@@ -1,0 +1,38 @@
+
+class Solution
+{
+    //Function to sort an array using quick sort algorithm.
+    static void quickSort(int arr[], int low, int high)
+    {
+        // code here
+        if(low<high){
+            //1. Divide
+            int m =partition(arr,low,high);
+            
+            //2. Conquer these subproblems via recursion
+            quickSort(arr,low,m-1);
+            quickSort(arr,m+1,high);
+        }
+    }
+    static int partition(int arr[], int low, int high)
+    {
+        // your code here
+        int i=low;
+        int pivot=arr[low];
+        for( int j=low+1;j<=high;j++){
+            if(arr[j]<=pivot){
+                i=i+1;
+                //swap
+                int temp=arr[i];
+                arr[i]=arr[j];
+                arr[j]=temp;
+            }
+        }
+        //swap
+        int temp1=arr[low];
+        arr[low]=arr[i];
+        arr[i]=temp1;
+        
+        return i;
+    } 
+}
