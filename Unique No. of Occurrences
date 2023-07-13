@@ -1,0 +1,13 @@
+class Solution {
+    public static boolean isFrequencyUnique(int n, int[] arr) {
+        // code here
+        HashMap<Integer,Integer>m=new HashMap<>();
+        for(int i=0;i<n;i++)
+            m.put(arr[i],m.getOrDefault(arr[i],0)+1);
+        HashSet<Integer>st=new HashSet<>();
+        for(Map.Entry<Integer,Integer>e:m.entrySet())
+            st.add(e.getValue());
+        if(st.size()==m.size())return true;
+        return false;
+    }
+}
