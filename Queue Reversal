@@ -1,0 +1,17 @@
+class GfG{
+    //Function to reverse the queue.
+    public Queue<Integer> rev(Queue<Integer> q){
+        //add code here.
+           java.util.ArrayList<Integer> a = new java.util.ArrayList<Integer>();
+        while(!q.isEmpty()){
+            a.add(q.remove());
+        }
+        
+      Collections.reverse(a);
+       
+       for(int i=0;i<a.size();i++){
+           q.add(a.get(i));
+       }
+       return q;
+    }
+}
