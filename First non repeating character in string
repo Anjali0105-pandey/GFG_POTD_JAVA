@@ -1,0 +1,36 @@
+
+class Solution
+{
+    public String FirstNonRepeating(String A)
+    {
+        // code here
+         HashMap<Character, Integer> frequencyMap = new HashMap<>();
+        Queue<Character> queue = new LinkedList<>();
+        StringBuilder result = new StringBuilder();
+
+        for (char ch : A.toCharArray()) {
+            // Update the frequency map
+            frequencyMap.put(ch, frequencyMap.getOrDefault(ch, 0) + 1);
+
+            // Add the character to the queue
+            queue.add(ch);
+
+            // Check for the first non-repeating character
+            while (!queue.isEmpty()) {
+                if (frequencyMap.get(queue.peek()) == 1) {
+                    result.append(queue.peek());
+                    break;
+                } else {
+                    queue.remove();
+                }
+            }
+
+            // If no non-repeating character found, append '#'
+            if (queue.isEmpty()) {
+                result.append("#");
+            }
+        }
+
+        return result.toString();
+    }
+}
