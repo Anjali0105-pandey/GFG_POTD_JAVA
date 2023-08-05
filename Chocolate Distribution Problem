@@ -1,0 +1,15 @@
+class Solution
+{
+    public long findMinDiff (ArrayList<Integer> a, int n, int m)
+    {
+        // your code here
+        Collections.sort(a);//sort the array and check every 5 element,take the minimum difference
+        long min=Long.MAX_VALUE;
+        for(int i=0;i<n-m+1;i++){
+            int j=i+m-1;
+            if(a.get(j)-a.get(i)<min)
+                min=a.get(j)-a.get(i);
+        }
+        return min;
+    }
+}
