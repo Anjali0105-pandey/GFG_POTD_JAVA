@@ -1,0 +1,33 @@
+
+class Solution {
+
+    public static int maxOnes(int a[], int n) {
+        // Your code goes here
+          // MAKE 0 TO 1 AND 1 TO -1
+        int c=0;
+        for(int i=0;i<n;i++){
+            if(a[i]==0){
+                a[i] = 1;
+            }   
+            else{    
+                a[i] = -1;
+            } 
+        }
+        // KADANES ALGO
+        int curr=0;
+        int max_curr=0;
+        for(int i=0;i<n;i++){
+            curr = curr + a[i];
+            if(max_curr < curr){
+                max_curr = curr;
+            }
+            if(curr < 0){
+                curr = 0;
+            }
+        }
+        for(int i=0;i<n;i++){
+            if(a[i] == -1) c++;
+        }
+        return max_curr + c;
+    }
+}
