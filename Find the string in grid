@@ -1,0 +1,50 @@
+
+//User function Template for Java
+
+class Solution
+{
+    public int[][] searchWord(char[][] grid, String word)
+    {
+        int n = grid.length;
+        int m = grid[0].length;
+        int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}, {-1, -1}, {-1, 1}, {1, -1}, {1, 1}};
+        
+        List<int[]> result = new ArrayList<>();
+        
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (grid[i][j] == word.charAt(0)) {
+                    for (int[] dir : directions) {
+                        int row = i;
+                        int col = j;
+                        int k;
+                        
+                        for (k = 1; k < word.length(); k++) {
+                            int newRow = row + dir[0];
+                            int newCol = col + dir[1];
+                            
+                            if (newRow < 0 || newRow >= n || newCol < 0 || newCol >= m || grid[newRow][newCol] != word.charAt(k)) {
+                                break;
+                            }
+                            
+                            row = newRow;
+                            col = newCol;
+                        }
+                        
+                        if (k == word.length()) {
+                            result.add(new int[]{i, j});
+                            break; // Avoid adding duplicates if the word can be found in multiple directions
+                        }
+                    }
+                }
+            }
+        }
+        
+        int[][] ans = new int[result.size()][2];
+        for (int i = 0; i < result.size(); i++) {
+            ans[i] = result.get(i);
+        }
+        
+        return ans;
+    }
+}
