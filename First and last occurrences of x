@@ -1,0 +1,26 @@
+
+class GFG
+{
+    ArrayList<Integer> find(int arr[], int n, int x)
+    {
+        // code here
+        ArrayList<Integer> ans= new ArrayList<Integer>();
+        for(int i=0;i<n;i++){
+            if(arr[i]==x){
+                ans.add(i);
+                break;
+            }
+            if(i==n-1 && arr[i]!=x) 
+                ans.add(-1);
+        }
+        for(int i=n-1;i>=0;i--){
+            if(arr[i]==x){
+                ans.add(i);
+                break;
+            }
+             if(i==0 && arr[i]!=x) 
+                ans.add(-1);
+        }
+        return ans;
+    }
+}
