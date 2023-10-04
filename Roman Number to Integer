@@ -1,0 +1,70 @@
+
+// User function Template for Java
+
+//JAVA SOLUTION 
+
+ 
+
+//Here's a step-by-step explanation of the code:
+
+//Initialization: 
+//Creates a HashMap h where Roman numerals are keys, 
+//and their corresponding decimal values are the values.
+
+//Iterating Through the Input String: 
+//It iterates through the input Roman numeral string from left to right, checking each character.
+
+//Comparing Current and Next Characters: 
+//For each character except the last one, 
+//it compares the current character with the next character.
+
+//If the decimal value of the current character is less than the decimal value of the next character, 
+//it subtracts the current value from the total sum.
+//Otherwise, it adds the current value to the total sum.
+
+//Adding the Last Character: 
+//Finally, it adds the decimal value of the last character to the total sum.
+
+//Returning the Result: 
+//The total sum is returned as the decimal equivalent of the input Roman numeral string.
+
+//For example, 
+//if you call romanToDecimal("IX"), the function calculates 1 (for 'I') - (-1) (for 'X'), 
+//resulting in 10 - 1 = 9, which is the correct decimal representation of "IX".
+
+ 
+
+ 
+
+class Solution {
+    // Finds decimal value of a given roman numeral
+    public int romanToDecimal(String str) {
+        // code here
+        HashMap<Character,Integer> map = new HashMap<>();
+        
+        map.put('I',1);
+        map.put('V',5);
+        map.put('X',10);
+        map.put('L',50);
+        map.put('C',100);
+        map.put('D',500);
+        map.put('M',1000);
+        
+        int n = str.length();
+        int num = 0;
+        
+        for(int i = 0;i<n;i++){
+            if(i==n-1){
+                num +=map.get(str.charAt(i));
+            }
+           else if(map.get(str.charAt(i)) < map.get(str.charAt(i+1))){
+                num += map.get(str.charAt(i+1))-map.get(str.charAt(i));
+                i++;
+            }else{
+            num += map.get(str.charAt(i));
+            }
+        }
+        
+        return num;
+    }
+}
